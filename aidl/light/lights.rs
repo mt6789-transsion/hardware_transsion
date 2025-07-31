@@ -16,6 +16,7 @@
 //! This module implements the ILights AIDL interface
 
 use std::collections::HashMap;
+use std::ffi::CString;
 use std::fs;
 use std::sync::Mutex;
 
@@ -61,7 +62,7 @@ impl LightsService {
 impl Default for LightsService {
     fn default() -> Self {
         let backlight = HwLight {
-            id: LightType::BACKLIGHT as i32,
+            id: LightType::BACKLIGHT.0 as i32,
             ordinal: 0,
             r#type: LightType::BACKLIGHT,
         };
@@ -83,14 +84,18 @@ impl ILights for LightsService {
                         255
                     }
                 };
-               
+
                 let brightness = get_brightness_from_state(state);
                 let scaled_brightness = scale_brightness(brightness, max_brightness);
 
                 if let Err(e) = set_brightness(scaled_brightness) {
                     error!("Failed to set brightness: {}", e);
                     let msg = format!("Failed to write brightness to sysfs: {}", e);
-                    return Err(Status::new_exception(ExceptionCode::TRANSACTION_FAILED, Some(&msg)));
+                    let c_msg = CString::new(msg).unwrap();
+                    return Err(Status::new_exception(
+                        ExceptionCode::TRANSACTION_FAILED,
+                        Some(&c_msg),
+                    ));
                 }
             }
 
@@ -144,7 +149,6 @@ fn scale_brightness(brightness: u32, max_brightness: u32) -> u32 {
     if brightness == 0 {
         return 0;
     }
-  
+
     (brightness - 1) * (max_brightness - 1) / (0xFF - 1) + 1
 }
-
