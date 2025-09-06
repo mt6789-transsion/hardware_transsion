@@ -1,2 +1,0 @@
-get_prop(stflashtool, system_nfc_prop)
-r_dir_file(stflashtool, sysfs_soc)
