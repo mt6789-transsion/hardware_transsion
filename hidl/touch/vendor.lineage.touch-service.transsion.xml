@@ -2,7 +2,6 @@
     <hal format="hidl">
         <name>vendor.lineage.touch</name>
         <transport>hwbinder</transport>
-        <version>1.0</version>
         <interface>
             <name>IHighTouchPollingRate</name>
             <instance>default</instance>

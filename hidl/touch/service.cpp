@@ -4,15 +4,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#define LOG_TAG "lineage.touch@1.0-service.transsion"
+#define LOG_TAG "lineage.touch-service.transsion"
 
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>
 
 #include "HighTouchPollingRate.h"
 
-using ::vendor::lineage::touch::V1_0::IHighTouchPollingRate;
-using ::vendor::lineage::touch::V1_0::implementation::HighTouchPollingRate;
+using ::vendor::lineage::touch::IHighTouchPollingRate;
+using ::vendor::lineage::touch::implementation::HighTouchPollingRate;
 
 int main() {
     android::sp<IHighTouchPollingRate> highTouchPollingRate = new HighTouchPollingRate();

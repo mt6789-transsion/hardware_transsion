@@ -13,7 +13,6 @@
 namespace vendor {
 namespace lineage {
 namespace touch {
-namespace V1_0 {
 namespace implementation {
 
 Return<bool> HighTouchPollingRate::isEnabled() {
@@ -31,7 +30,6 @@ Return<bool> HighTouchPollingRate::setEnabled(bool enabled) {
 }
 
 }  // namespace implementation
-}  // namespace V1_0
 }  // namespace touch
 }  // namespace lineage
 }  // namespace vendor

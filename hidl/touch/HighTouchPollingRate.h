@@ -6,12 +6,11 @@
 
 #pragma once
 
-#include <vendor/lineage/touch/1.0/IHighTouchPollingRate.h>
+#include <vendor/lineage/touch/IHighTouchPollingRate.h>
 
 namespace vendor {
 namespace lineage {
 namespace touch {
-namespace V1_0 {
 namespace implementation {
 
 using ::android::hardware::Return;
