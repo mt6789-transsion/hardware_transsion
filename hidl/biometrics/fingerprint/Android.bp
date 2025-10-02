@@ -1,0 +1,42 @@
+//
+// Copyright (C) 2017 The Android Open Source Project
+//               2022 The LineageOS Project
+//               2025 rajabutwithF
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "android.hardware.biometrics.fingerprint@2.3-service.transsion",
+    defaults: ["hidl_defaults"],
+    init_rc: ["android.hardware.biometrics.fingerprint@2.3-service.transsion.rc"],
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: [
+        "BiometricsFingerprint.cpp",
+        "service.cpp",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libdl",
+        "liblog",
+        "libhidlbase",
+        "libhardware",
+        "libutils",
+        "android.hardware.biometrics.fingerprint@2.1",
+        "android.hardware.biometrics.fingerprint@2.2",
+        "android.hardware.biometrics.fingerprint@2.3",
+    ],
+
+    header_libs: ["transsionfingerprint_headers"],
+}
+
+cc_library_headers {
+    name: "transsionfingerprint_headers",
+    export_include_dirs: ["include"],
+    vendor: true,
+    header_libs: ["libhardware_headers"],
+    export_header_lib_headers: ["libhardware_headers"],
+}
